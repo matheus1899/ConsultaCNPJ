@@ -1,7 +1,6 @@
-package com.tenorinho.consultacnpj.data.dto.network
+package com.tenorinho.consultacnpj.data.model.dto.network
 
 import com.google.gson.annotations.SerializedName
-import com.tenorinho.consultacnpj.data.domain.AtividadeEmpresa
 
 data class NetworkEmpresa(
     @SerializedName("cnpj")

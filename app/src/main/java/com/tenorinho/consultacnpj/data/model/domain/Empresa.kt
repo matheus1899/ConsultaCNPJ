@@ -1,24 +1,24 @@
-package com.tenorinho.consultacnpj.data.dto.db
+package com.tenorinho.consultacnpj.data.model.domain
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "empresa")
-data class DBEmpresa(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int,
+data class Empresa(
     val cnpj:String,
     val tipo:String,
     val dataAbertura:String,
     val razaoSocial:String,
     val nomeFantasia:String,
-    val atividadePrincipal:String,
-    val atividadesSecundarias:String,
+    val atividadePrincipal:ArrayList<AtividadeEmpresa>,
+    val atividadesSecundarias: ArrayList<AtividadeEmpresa>,
     val naturezaJuridica:String,
     val situacao:String,
+    //Endereço
+    val logradouro:String,
     val complemento:String,
     val cep:String,
     val bairro:String,
     val municipio:String,
     val unidadeDaFederacao:String,
+)
+data class AtividadeEmpresa(
+    val texto:String,
+    val codigo:String
 )
