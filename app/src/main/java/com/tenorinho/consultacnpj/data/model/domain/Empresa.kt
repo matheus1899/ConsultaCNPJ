@@ -1,6 +1,7 @@
 package com.tenorinho.consultacnpj.data.model.domain
 
 data class Empresa(
+    val id:Int = 0,
     val cnpj:String,
     val tipo:String,
     val dataAbertura:String,
