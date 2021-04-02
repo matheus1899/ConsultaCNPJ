@@ -3,7 +3,7 @@ package com.tenorinho.consultacnpj.data.model.dto.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "empresa")
+@Entity(tableName = "table_empresas")
 data class DBEmpresa(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
