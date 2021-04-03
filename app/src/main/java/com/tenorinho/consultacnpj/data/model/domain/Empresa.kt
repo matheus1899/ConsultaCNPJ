@@ -7,11 +7,10 @@ data class Empresa(
     val dataAbertura:String,
     val razaoSocial:String,
     val nomeFantasia:String,
-    val atividadePrincipal:ArrayList<AtividadeEmpresa>,
-    val atividadesSecundarias: ArrayList<AtividadeEmpresa>,
+    //val atividadePrincipal:ArrayList<AtividadeEmpresa>,
+    //val atividadesSecundarias: ArrayList<AtividadeEmpresa>,
     val naturezaJuridica:String,
     val situacao:String,
-    //Endereço
     val logradouro:String,
     val complemento:String,
     val cep:String,

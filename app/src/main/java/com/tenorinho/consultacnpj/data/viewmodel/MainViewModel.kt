@@ -1,45 +1,73 @@
 package com.tenorinho.consultacnpj.data.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import com.tenorinho.consultacnpj.data.model.domain.Empresa
+import androidx.lifecycle.*
+import com.tenorinho.consultacnpj.data.model.dto.db.DBEmpresa
 import com.tenorinho.consultacnpj.data.repository.EmpresaRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val empresaRepo: EmpresaRepository) : ViewModel(){
-    val listaEmpresas = MutableLiveData<ArrayList<Empresa>>()
+class MainViewModel(private val repository: EmpresaRepository) : ViewModel(){
+    lateinit var listaEmpresas:LiveData<List<DBEmpresa>>
+    val empresa = MutableLiveData<DBEmpresa>()
     val progressBarIsVisible = MutableLiveData<Boolean>()
+    val cnpjIsValid = MutableLiveData<Boolean>()
     val cnpjText = MutableLiveData<String>()
     val error = MutableLiveData<Throwable>()
+    val shakeShake = MutableLiveData<Boolean>()
 
-    init {
-        listaEmpresas.value = ArrayList(0)
+    init{
         progressBarIsVisible.value = false
+        cnpjIsValid.value = false
+        shakeShake.value = true
         cnpjText.value = ""
+        repository.scope = viewModelScope
+        updateList()
     }
-    fun bindListaEmpresa(lista: ArrayList<Empresa>?){
-        if(lista != null){
-            listaEmpresas.value!!.addAll(lista)
+    fun searchCNPJ(){
+        progressBarIsVisible.value = true
+        if(cnpjIsValid.value!!){
+            viewModelScope.launch {
+                var cnpjComPonto:String = ""
+                cnpjComPonto += cnpjText.value!!.subSequence(0, 2)
+                cnpjComPonto += "."
+                cnpjComPonto += cnpjText.value!!.subSequence(2, 5)
+                cnpjComPonto += "."
+                cnpjComPonto += cnpjText.value!!.subSequence(5, 8)
+                cnpjComPonto += "/"
+                cnpjComPonto += cnpjText.value!!.subSequence(8, 12)
+                cnpjComPonto += "-"
+                cnpjComPonto += cnpjText.value!!.subSequence(12, 14)
+
+                repository.getEmpresaByCNPJ(cnpjText.value!!, cnpjComPonto, ::bindEmpresa, ::bindError)
+            }
+        }
+        else{
+            shakeShake.value = !shakeShake.value!!
+        }
+        progressBarIsVisible.value = false
+    }
+    fun bindEmpresa(e:DBEmpresa?){
+        if(e != null){
+            empresa.value = e!!
+        }
+    }
+    fun updateList(){
+        viewModelScope.launch {
+            repository.getAllEmpresas(::bindListaEmpresas, ::bindError)
+        }
+    }
+    fun bindListaEmpresas(l:LiveData<List<DBEmpresa>>?){
+        if(l != null){
+            listaEmpresas =  l
         }
     }
     fun bindError(t:Throwable){
         error.value = t
     }
-    fun searchByCNPJ(){
-        viewModelScope.launch {}
-    }
-    fun getAllEmpresas(){
-        viewModelScope.launch {
-            empresaRepo.getAllEmpresas(::bindListaEmpresa, ::bindError)
-        }
-    }
-    class MainViewModelFactory(private val empresaRepo: EmpresaRepository):ViewModelProvider.Factory{
+    class MainViewModelFactory(private val repository: EmpresaRepository):ViewModelProvider.Factory{
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return MainViewModel(empresaRepo) as T
+                return MainViewModel(repository) as T
             }
             throw IllegalArgumentException("Class ViewModel desconhecida")
         }

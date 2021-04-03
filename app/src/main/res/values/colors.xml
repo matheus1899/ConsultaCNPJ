@@ -3,4 +3,6 @@
     <color name="Primary">#17569B</color>
     <color name="PrimaryDark">#15467E</color>
     <color name="PrimaryLight">#5682CC</color>
+    <color name="Invalid">#ED3237</color>
+    <color name="Valid">#068A4F</color>
 </resources>

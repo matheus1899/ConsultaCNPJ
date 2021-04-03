@@ -13,15 +13,14 @@ data class NetworkEmpresa(
     val razaoSocial:String,
     @SerializedName("fantasia")
     val nomeFantasia:String,
-    @SerializedName("atividade_principal")
-    val atividadePrincipal:ArrayList<NetworkAtividadeEmpresa>,
-    @SerializedName("atividades_secundarias")
-    val atividadesSecundarias: ArrayList<NetworkAtividadeEmpresa>,
+    //@SerializedName("atividade_principal")
+    //val atividadePrincipal:ArrayList<NetworkAtividadeEmpresa>,
+    //@SerializedName("atividades_secundarias")
+    //val atividadesSecundarias: ArrayList<NetworkAtividadeEmpresa>,
     @SerializedName("natureza_juridica")
     val naturezaJuridica:String,
     @SerializedName("situacao")
     val situacao:String,
-    //Endereço
     @SerializedName("logradouro")
     val logradouro:String,
     @SerializedName("complemento")
