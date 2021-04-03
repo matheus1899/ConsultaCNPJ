@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ConsultaCNPJ</string>
+    <string name="cnpj">CNPJ</string>
+    <string name="data_de_abertura">Data de abertura</string>
+    <string name="nome_fantasia">Nome fantasia</string>
+    <string name="razao_social">Razão social</string>
+    <string name="tipo">Tipo</string>
+    <string name="situacao">Situação</string>
+    <string name="endereco">Endereço</string>
+    <string name="cep">CEP</string>
+    <string name="bairro">Bairro</string>
+    <string name="municipio">Município</string>
+    <string name="uf">UF</string>
+    <string name="natureza_juridica">Natureza jurídica</string>
 </resources>

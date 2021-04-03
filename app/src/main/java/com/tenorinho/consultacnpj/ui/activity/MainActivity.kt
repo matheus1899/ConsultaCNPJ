@@ -12,30 +12,36 @@ import com.tenorinho.consultacnpj.R
 import com.tenorinho.consultacnpj.data.repository.EmpresaRepository
 import com.tenorinho.consultacnpj.data.viewmodel.MainViewModel
 import com.tenorinho.consultacnpj.databinding.ActivityMainBinding
+import com.tenorinho.consultacnpj.ui.fragment.ShowEmpresaDialogFragment
 import com.tenorinho.consultacnpj.ui.adapter.CNPJAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var adapter:CNPJAdapter
     private lateinit var viewModel:MainViewModel
+    private lateinit var dialogView:View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        dialogView = layoutInflater.inflate(R.layout.show_empresa_dialog, null, false)
         init()
     }
     private fun init(){
-        adapter = CNPJAdapter()
         setViewModel()
+        adapter = CNPJAdapter(this)
         binding.recyclerView.adapter = adapter
         binding.viewModel = viewModel
         viewModel.error.observe(this, Observer{ Toast.makeText(this, it.message,Toast.LENGTH_SHORT).show() })
-        viewModel.empresa.observe(this, Observer{ showDBEmpresa() })
+        viewModel.empresa.observe(this, Observer{ showEmpresa() })
         viewModel.cnpjText.observe(this, Observer{ validarCNPJ() })
         viewModel.shakeShake.observe(this, Observer{ shakeShake() })
         viewModel.listaEmpresas.observe(this, Observer{ adapter.updateList(it) })
         viewModel.progressBarIsVisible.observe(this, Observer { showOrHideProgressBar(it) })
         adapter.updateList(viewModel.listaEmpresas.value)
+    }
+    fun updateEmpresa(position:Int){
+        viewModel.updateEmpresa(position)
     }
     private fun setViewModel(){
         val app = application as App
@@ -110,8 +116,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    private fun showDBEmpresa(){
-        //abrir Dialog com Imformações da Empresa
+    private fun showEmpresa(){
+        if(viewModel.empresa.value != null){
+            val showDialog = ShowEmpresaDialogFragment(viewModel.empresa.value!!)
+            showDialog.show(supportFragmentManager, "teste")
+        }
     }
     private fun showOrHideProgressBar(b:Boolean){
         binding.progressBar.visibility = if(b) View.VISIBLE else View.GONE

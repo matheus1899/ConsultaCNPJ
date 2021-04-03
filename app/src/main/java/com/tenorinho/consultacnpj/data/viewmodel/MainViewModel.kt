@@ -55,6 +55,13 @@ class MainViewModel(private val repository: EmpresaRepository) : ViewModel(){
             repository.getAllEmpresas(::bindListaEmpresas, ::bindError)
         }
     }
+
+    fun updateEmpresa(position:Int){
+        val e = listaEmpresas.value!![position]
+        if(e != null){
+            empresa.value = e
+        }
+    }
     fun bindListaEmpresas(l:LiveData<List<DBEmpresa>>?){
         if(l != null){
             listaEmpresas =  l
