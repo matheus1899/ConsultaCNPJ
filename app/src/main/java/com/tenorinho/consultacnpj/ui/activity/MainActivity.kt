@@ -1,5 +1,6 @@
 package com.tenorinho.consultacnpj.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
 import com.tenorinho.consultacnpj.App
 import com.tenorinho.consultacnpj.R
 import com.tenorinho.consultacnpj.data.repository.EmpresaRepository
 import com.tenorinho.consultacnpj.data.viewmodel.MainViewModel
 import com.tenorinho.consultacnpj.databinding.ActivityMainBinding
-import com.tenorinho.consultacnpj.ui.fragment.ShowEmpresaDialogFragment
 import com.tenorinho.consultacnpj.ui.adapter.CNPJAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -24,11 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        dialogView = layoutInflater.inflate(R.layout.show_empresa_dialog, null, false)
+        dialogView = layoutInflater.inflate(R.layout.activity_show_empresa, null, false)
         init()
     }
     private fun init(){
-        setViewModel()
+        getViewModel()
         adapter = CNPJAdapter(this)
         binding.recyclerView.adapter = adapter
         binding.viewModel = viewModel
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     fun updateEmpresa(position:Int){
         viewModel.updateEmpresa(position)
     }
-    private fun setViewModel(){
+    private fun getViewModel(){
         val app = application as App
         val factory = MainViewModel.MainViewModelFactory(EmpresaRepository(app.empresaDAO))
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
@@ -118,8 +119,12 @@ class MainActivity : AppCompatActivity() {
     }
     private fun showEmpresa(){
         if(viewModel.empresa.value != null){
-            val showDialog = ShowEmpresaDialogFragment(viewModel.empresa.value!!)
-            showDialog.show(supportFragmentManager, "teste")
+            val i = Intent(this, ShowEmpresaActivity::class.java)
+            val b = Bundle()
+            b.putSerializable("empresa", viewModel.empresa.value!!.toEmpresa())
+            b.putBoolean("isFromWeb", viewModel.isFromWeb)
+            i.putExtra("bundle", b)
+            startActivity(i)
         }
     }
     private fun showOrHideProgressBar(b:Boolean){

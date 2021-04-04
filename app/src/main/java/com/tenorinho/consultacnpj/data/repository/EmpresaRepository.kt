@@ -2,7 +2,6 @@ package com.tenorinho.consultacnpj.data.repository
 
 import androidx.lifecycle.LiveData
 import com.tenorinho.consultacnpj.data.localdb.dao.IEmpresaDAO
-import com.tenorinho.consultacnpj.data.model.domain.Empresa
 import com.tenorinho.consultacnpj.data.model.dto.db.DBEmpresa
 import com.tenorinho.consultacnpj.data.model.dto.network.NetworkEmpresa
 import com.tenorinho.consultacnpj.data.net.IReceitaService
@@ -18,11 +17,11 @@ class EmpresaRepository(private val dao:IEmpresaDAO){
     private val service = RetrofitConfig.getRetrofit().create(IReceitaService::class.java)
     var scope:CoroutineScope? = null
 
-    suspend fun getEmpresaByCNPJ(cnpjSemPontuacao: String, cnpjComPontuacao:String, success: (DBEmpresa?) -> Unit, failure: (Throwable) -> Unit) {
+    suspend fun getEmpresaByCNPJ(cnpjSemPontuacao: String, cnpjComPontuacao:String, success: (DBEmpresa?, fromWeb:Boolean) -> Unit, failure: (Throwable) -> Unit) {
         try {
             if(cnpjExists(cnpjComPontuacao)){
                 val e = dao.getEmpresaByCNPJ(cnpjComPontuacao)
-                success(e)
+                success(e, false)
             }
             else{
                 val c = service.getEmpresaByCNPJ(cnpjSemPontuacao)
@@ -34,8 +33,8 @@ class EmpresaRepository(private val dao:IEmpresaDAO){
                                 val e = DBEmpresa(0, body.cnpj, body.tipo, body.dataAbertura, body.razaoSocial, body.nomeFantasia,
                                     body.naturezaJuridica, body.situacao, body.logradouro, body.complemento, body.cep, body.bairro,
                                     body.municipio, body.unidadeDaFederacao)
-                                scope?.launch { dao.addEmpresa(e) }
-                                success(e)
+                                //scope?.launch { dao.addEmpresa(e) }
+                                success(e, true)
                             }
                             else{
                                 failure(Throwable("CNPJ não encontrado"))
@@ -63,6 +62,9 @@ class EmpresaRepository(private val dao:IEmpresaDAO){
         catch(ex:Exception){
             failure(Throwable(ex.message))
         }
+    }
+    suspend fun saveEmpresa(empresa:DBEmpresa){
+        dao.addEmpresa(empresa)
     }
     private suspend fun cnpjExists(cnpj: String):Boolean{
         val i = dao.cnpjExists(cnpj)

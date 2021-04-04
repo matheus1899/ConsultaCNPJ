@@ -13,11 +13,13 @@ class MainViewModel(private val repository: EmpresaRepository) : ViewModel(){
     val cnpjText = MutableLiveData<String>()
     val error = MutableLiveData<Throwable>()
     val shakeShake = MutableLiveData<Boolean>()
+    var isFromWeb:Boolean
 
     init{
         progressBarIsVisible.value = false
         cnpjIsValid.value = false
         shakeShake.value = true
+        isFromWeb = false
         cnpjText.value = ""
         repository.scope = viewModelScope
         updateList()
@@ -45,9 +47,10 @@ class MainViewModel(private val repository: EmpresaRepository) : ViewModel(){
         }
         progressBarIsVisible.value = false
     }
-    fun bindEmpresa(e:DBEmpresa?){
+    fun bindEmpresa(e:DBEmpresa?, fromWeb:Boolean){
         if(e != null){
             empresa.value = e!!
+            isFromWeb = fromWeb
         }
     }
     fun updateList(){
@@ -55,7 +58,6 @@ class MainViewModel(private val repository: EmpresaRepository) : ViewModel(){
             repository.getAllEmpresas(::bindListaEmpresas, ::bindError)
         }
     }
-
     fun updateEmpresa(position:Int){
         val e = listaEmpresas.value!![position]
         if(e != null){

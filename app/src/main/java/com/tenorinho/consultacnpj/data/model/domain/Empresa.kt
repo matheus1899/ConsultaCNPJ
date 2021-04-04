@@ -1,5 +1,8 @@
 package com.tenorinho.consultacnpj.data.model.domain
 
+import android.os.Bundle
+import java.io.Serializable
+
 data class Empresa(
     val id:Int = 0,
     val cnpj:String,
@@ -17,7 +20,7 @@ data class Empresa(
     val bairro:String,
     val municipio:String,
     val unidadeDaFederacao:String,
-)
+):Serializable
 data class AtividadeEmpresa(
     val texto:String,
     val codigo:String

@@ -12,4 +12,5 @@
     <string name="municipio">Município</string>
     <string name="uf">UF</string>
     <string name="natureza_juridica">Natureza jurídica</string>
+    <string name="salvar">Salvar</string>
 </resources>

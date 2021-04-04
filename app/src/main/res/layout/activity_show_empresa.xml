@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.tenorinho.consultacnpj.data.viewmodel.ShowEmpresaViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/show_empresa_razao_social_title"
+                style="@style/ShowEmpresaTitle"
+                android:layout_marginTop="8dp"
+                android:text="@string/razao_social"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_razao_social"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toTopOf="@+id/show_empresa_guide_top" />
+
+            <TextView
+                android:id="@+id/show_empresa_razao_social"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.razaoSocial}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_nome_fantasia_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_razao_social_title"
+                tools:text="BANCO ZÉ BONITINHO SA" />
+
+            <TextView
+                android:id="@+id/show_empresa_nome_fantasia_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/nome_fantasia"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_nome_fantasia"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_razao_social" />
+
+            <TextView
+                android:id="@+id/show_empresa_nome_fantasia"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.nomeFantasia}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_data_abertura_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_nome_fantasia_title"
+                tools:text="Zé Bonitinho" />
+
+            <TextView
+                android:id="@+id/show_empresa_data_abertura_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/data_de_abertura"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_data_abertura"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_nome_fantasia" />
+
+            <TextView
+                android:id="@+id/show_empresa_data_abertura"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.dataAbertura}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_situacao_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_data_abertura_title"
+                tools:text="03/04/2021" />
+
+            <TextView
+                android:id="@+id/show_empresa_cnpj_title"
+                style="@style/ShowEmpresaTitle"
+                android:layout_marginTop="8dp"
+                android:text="@string/cnpj"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_cnpj"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toTopOf="@+id/show_empresa_guide_top" />
+
+            <TextView
+                android:id="@+id/show_empresa_cnpj"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.cnpj}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_tipo_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_cnpj_title"
+                tools:text="00.781.165/0001-15" />
+
+            <TextView
+                android:id="@+id/show_empresa_natu_jur_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/natureza_juridica"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_natu_jur"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_tipo" />
+
+            <TextView
+                android:id="@+id/show_empresa_natu_jur"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.naturezaJuridica}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_endereco_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_natu_jur_title"
+                tools:text="CAPITAL IMPRODUTIVO" />
+
+            <TextView
+                android:id="@+id/show_empresa_tipo_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/tipo"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_tipo"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_cnpj" />
+
+            <TextView
+                android:id="@+id/show_empresa_tipo"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.tipo}"
+                app:layout_constraintBottom_toTopOf="@id/show_empresa_natu_jur_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_tipo_title"
+                tools:text="MATRIZ" />
+
+            <TextView
+                android:id="@+id/show_empresa_situacao_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/situacao"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_situacao"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_data_abertura" />
+
+            <TextView
+                android:id="@+id/show_empresa_situacao"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.situacao}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_cep_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_situacao_title"
+                tools:text="ATIVO" />
+
+            <TextView
+                android:id="@+id/show_empresa_endereco_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/endereco"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_endereco"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_natu_jur" />
+
+            <TextView
+                android:id="@+id/show_empresa_endereco"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.logradouro}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_bairro_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_endereco_title"
+                tools:text="RUA DOS TAMOIOS" />
+
+            <TextView
+                android:id="@+id/show_empresa_cep_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/cep"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_cep"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_situacao" />
+
+            <TextView
+                android:id="@+id/show_empresa_cep"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.cep}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_municipio_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_cep_title"
+                tools:text="07198-100" />
+
+            <TextView
+                android:id="@+id/show_empresa_bairro_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/bairro"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_bairro"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_endereco" />
+
+            <TextView
+                android:id="@+id/show_empresa_bairro"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.bairro}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_uf_title"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_bairro_title"
+                tools:text="JD. DADO" />
+
+            <TextView
+                android:id="@+id/show_empresa_municipio_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/municipio"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_municipio"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_cep" />
+
+            <TextView
+                android:id="@+id/show_empresa_municipio"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.municipio}"
+                app:layout_constraintBottom_toBottomOf="@id/show_empresa_barrier_h_1"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_municipio_title"
+                tools:text="São Paulo" />
+
+            <TextView
+                android:id="@+id/show_empresa_uf_title"
+                style="@style/ShowEmpresaTitle"
+                android:text="@string/uf"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_uf"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_bairro" />
+
+            <TextView
+                android:id="@+id/show_empresa_uf"
+                style="@style/ShowEmpresaItem"
+                android:text="@{viewModel.empresa.unidadeDaFederacao}"
+                app:layout_constraintBottom_toTopOf="@+id/show_empresa_barrier_h_1"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintTop_toBottomOf="@+id/show_empresa_uf_title"
+                tools:text="SP" />
+
+            <Button
+                android:id="@+id/show_empresa_btn_salvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_consultar"
+                android:text="@string/salvar"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
+                app:layout_constraintBottom_toBottomOf="@id/show_empresa_guide_bottom"
+                app:onClick="@{viewModel::saveEmpresa}" />
+            <View
+                android:id="@+id/show_empresa_separator"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:background="@color/PrimaryDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/show_empresa_guide_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/show_empresa_guide_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/show_empresa_guide_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/show_empresa_guide_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/show_empresa_guide_v_central"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/show_empresa_barrier_h_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="show_empresa_btn_salvar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
