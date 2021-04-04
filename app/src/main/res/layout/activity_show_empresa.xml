@@ -12,11 +12,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/show_empresa_razao_social_title"
                 style="@style/ShowEmpresaTitle"
@@ -26,7 +24,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toTopOf="@+id/show_empresa_guide_top" />
-
             <TextView
                 android:id="@+id/show_empresa_razao_social"
                 style="@style/ShowEmpresaItem"
@@ -36,7 +33,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_razao_social_title"
                 tools:text="BANCO ZÉ BONITINHO SA" />
-
             <TextView
                 android:id="@+id/show_empresa_nome_fantasia_title"
                 style="@style/ShowEmpresaTitle"
@@ -45,7 +41,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_razao_social" />
-
             <TextView
                 android:id="@+id/show_empresa_nome_fantasia"
                 style="@style/ShowEmpresaItem"
@@ -55,7 +50,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_nome_fantasia_title"
                 tools:text="Zé Bonitinho" />
-
             <TextView
                 android:id="@+id/show_empresa_data_abertura_title"
                 style="@style/ShowEmpresaTitle"
@@ -64,7 +58,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_nome_fantasia" />
-
             <TextView
                 android:id="@+id/show_empresa_data_abertura"
                 style="@style/ShowEmpresaItem"
@@ -74,7 +67,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_data_abertura_title"
                 tools:text="03/04/2021" />
-
             <TextView
                 android:id="@+id/show_empresa_cnpj_title"
                 style="@style/ShowEmpresaTitle"
@@ -84,7 +76,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toTopOf="@+id/show_empresa_guide_top" />
-
             <TextView
                 android:id="@+id/show_empresa_cnpj"
                 style="@style/ShowEmpresaItem"
@@ -94,7 +85,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_cnpj_title"
                 tools:text="00.781.165/0001-15" />
-
             <TextView
                 android:id="@+id/show_empresa_natu_jur_title"
                 style="@style/ShowEmpresaTitle"
@@ -103,7 +93,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_tipo" />
-
             <TextView
                 android:id="@+id/show_empresa_natu_jur"
                 style="@style/ShowEmpresaItem"
@@ -113,7 +102,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_natu_jur_title"
                 tools:text="CAPITAL IMPRODUTIVO" />
-
             <TextView
                 android:id="@+id/show_empresa_tipo_title"
                 style="@style/ShowEmpresaTitle"
@@ -122,7 +110,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_cnpj" />
-
             <TextView
                 android:id="@+id/show_empresa_tipo"
                 style="@style/ShowEmpresaItem"
@@ -132,7 +119,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_tipo_title"
                 tools:text="MATRIZ" />
-
             <TextView
                 android:id="@+id/show_empresa_situacao_title"
                 style="@style/ShowEmpresaTitle"
@@ -141,7 +127,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_data_abertura" />
-
             <TextView
                 android:id="@+id/show_empresa_situacao"
                 style="@style/ShowEmpresaItem"
@@ -151,7 +136,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_situacao_title"
                 tools:text="ATIVO" />
-
             <TextView
                 android:id="@+id/show_empresa_endereco_title"
                 style="@style/ShowEmpresaTitle"
@@ -179,7 +163,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_situacao" />
-
             <TextView
                 android:id="@+id/show_empresa_cep"
                 style="@style/ShowEmpresaItem"
@@ -217,7 +200,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_cep" />
-
             <TextView
                 android:id="@+id/show_empresa_municipio"
                 style="@style/ShowEmpresaItem"
@@ -227,7 +209,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_start"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_municipio_title"
                 tools:text="São Paulo" />
-
             <TextView
                 android:id="@+id/show_empresa_uf_title"
                 style="@style/ShowEmpresaTitle"
@@ -236,7 +217,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/show_empresa_guide_end"
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_bairro" />
-
             <TextView
                 android:id="@+id/show_empresa_uf"
                 style="@style/ShowEmpresaItem"
@@ -246,7 +226,6 @@
                 app:layout_constraintStart_toStartOf="@+id/show_empresa_guide_v_central"
                 app:layout_constraintTop_toBottomOf="@+id/show_empresa_uf_title"
                 tools:text="SP" />
-
             <Button
                 android:id="@+id/show_empresa_btn_salvar"
                 android:layout_width="wrap_content"

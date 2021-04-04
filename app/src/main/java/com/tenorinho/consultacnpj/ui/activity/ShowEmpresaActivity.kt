@@ -2,6 +2,7 @@ package com.tenorinho.consultacnpj.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -26,6 +27,7 @@ class ShowEmpresaActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         getViewModel()
         viewModel.isFromWeb.observe(this, Observer{ setButtonVisibility()})
+        viewModel.success.observe(this, Observer { showShortToast(it) })
         val b = intent.getBundleExtra("bundle")
         if(b != null){
             if(b.containsKey("isFromWeb")){
@@ -46,5 +48,10 @@ class ShowEmpresaActivity : AppCompatActivity() {
     }
     private fun setButtonVisibility(){
         binding.showEmpresaBtnSalvar.visibility = if(viewModel.isFromWeb.value!!) View.VISIBLE else View.GONE
+    }
+    private fun showShortToast(message:String){
+        if(message.isNotEmpty()){
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
     }
 }

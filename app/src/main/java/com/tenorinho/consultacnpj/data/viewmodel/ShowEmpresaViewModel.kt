@@ -11,13 +11,20 @@ import kotlinx.coroutines.launch
 
 class ShowEmpresaViewModel(private val repositorio:EmpresaRepository) : ViewModel() {
     val empresa = MutableLiveData<Empresa>()
-    var isFromWeb = MutableLiveData<Boolean>()
+    val isFromWeb = MutableLiveData<Boolean>()
+    val success = MutableLiveData<String>()
 
     init {
         repositorio.scope = viewModelScope
         isFromWeb.value = false
+        success.value = ""
     }
-
+    private fun onSuccessAddEmpresa(message:String){
+        if(message.isNotEmpty()){
+            success.value = message
+            isFromWeb.value = false
+        }
+    }
     fun saveEmpresa(){
         val e = empresa.value
         if(e != null){
@@ -25,7 +32,7 @@ class ShowEmpresaViewModel(private val repositorio:EmpresaRepository) : ViewMode
                 e.nomeFantasia, e.naturezaJuridica, e.situacao, e.logradouro, e.complemento,
                 e.cep, e.bairro, e.municipio, e.unidadeDaFederacao)
             viewModelScope.launch {
-                repositorio.saveEmpresa(db)
+                repositorio.saveEmpresa(db, ::onSuccessAddEmpresa)
             }
         }
     }

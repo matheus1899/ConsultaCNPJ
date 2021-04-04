@@ -7,7 +7,6 @@ import com.tenorinho.consultacnpj.data.model.dto.network.NetworkEmpresa
 import com.tenorinho.consultacnpj.data.net.IReceitaService
 import com.tenorinho.consultacnpj.data.net.RetrofitConfig
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +16,10 @@ class EmpresaRepository(private val dao:IEmpresaDAO){
     private val service = RetrofitConfig.getRetrofit().create(IReceitaService::class.java)
     var scope:CoroutineScope? = null
 
-    suspend fun getEmpresaByCNPJ(cnpjSemPontuacao: String, cnpjComPontuacao:String, success: (DBEmpresa?, fromWeb:Boolean) -> Unit, failure: (Throwable) -> Unit) {
+    suspend fun getEmpresaByCNPJ(cnpjSemPontuacao: String,
+                                 cnpjComPontuacao:String,
+                                 success: (DBEmpresa?, fromWeb:Boolean) -> Unit,
+                                 failure: (Throwable) -> Unit) {
         try {
             if(cnpjExists(cnpjComPontuacao)){
                 val e = dao.getEmpresaByCNPJ(cnpjComPontuacao)
@@ -63,8 +65,14 @@ class EmpresaRepository(private val dao:IEmpresaDAO){
             failure(Throwable(ex.message))
         }
     }
-    suspend fun saveEmpresa(empresa:DBEmpresa){
-        dao.addEmpresa(empresa)
+    suspend fun saveEmpresa(empresa:DBEmpresa, success:(String)->Unit){
+        try{
+            dao.addEmpresa(empresa)
+            success("Adicionado com sucesso")
+        }
+        catch(e:Exception){
+
+        }
     }
     private suspend fun cnpjExists(cnpj: String):Boolean{
         val i = dao.cnpjExists(cnpj)

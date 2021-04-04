@@ -49,8 +49,8 @@ class MainViewModel(private val repository: EmpresaRepository) : ViewModel(){
     }
     fun bindEmpresa(e:DBEmpresa?, fromWeb:Boolean){
         if(e != null){
-            empresa.value = e!!
             isFromWeb = fromWeb
+            empresa.value = e!!
         }
     }
     fun updateList(){

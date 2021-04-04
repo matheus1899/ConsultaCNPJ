@@ -20,12 +20,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var adapter:CNPJAdapter
     private lateinit var viewModel:MainViewModel
-    private lateinit var dialogView:View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        dialogView = layoutInflater.inflate(R.layout.activity_show_empresa, null, false)
         init()
     }
     private fun init(){
@@ -98,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                     soma += pesoArray2[i] * intArray[i]
                 }
                 resto = soma % 11
-                var segundoDigito: Int
+                var segundoDigito : Int
                 if (resto < 2) {
                     segundoDigito = 0
                 } else {
